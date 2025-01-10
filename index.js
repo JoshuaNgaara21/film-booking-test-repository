@@ -19,11 +19,12 @@ fetch('./FlatDango Db Data  (1).json')
         
         return {row: key, value}
     })
+    
+    //calling get films
     getFilms(jsonData);
 
-    Object.keys(data).forEach(key => {
-    const value = data[key];
-});
+    
+
 })
 
 function getFilms(jsonData){
@@ -49,12 +50,24 @@ function getFilms(jsonData){
 
         console.log(option.description);
         console.log(film.title);
-        out += `<option value= "${option.title}">${option.title} </option> `;
-
+        out += `<option id = "${option.id}" value= "${option.title}">${option.title} </option> `;
+        // OUT WAS ONE ARRAY OF ALL THE FILMS STORED AS ONE ARAY ELEMENT
+        
+        secondaryArr.push(`<option id = "${option.id}" value= "${option.title}">${option.title} </option> `);
+        //SECONDARY ARR HAS ALL THE FILMS STORED INDIVIDUALLY
+        
+        console.log(secondaryArr);
+        filmOption= option; //MAAYBE DONT STORE USERS CHOICE IN FILM OPTION HERE??
     })
     filmsDropdown.innerHTML=out;
 }
+outputChoice = document.getElementById("outputmovie");
 
+
+filmsDropdown.addEventListener("change", function(){
+    const selectedFilm = filmOption.id;
+    console.log(selectedFilm);
+})
 // document.addEventListener("change", )
 const dropChoice = document.getElementById("movie");
 
