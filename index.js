@@ -68,33 +68,17 @@ function displayMovieChosen(){
     filmsDropdown.addEventListener("change", function(){
     const selectedFilmName = filmsDropdown.value;
     console.log(selectedFilmName);
-    for(item in filmsArr){
-        console.log(item)
-    }
+    filmsArr.forEach(film => {
+        // console.log(film.title);
+        if(selectedFilmName==film.title){
+            console.log(`THE CORRECT FOUND FILM IS `+selectedFilmName );
+            outputChoice.textContent=(`${selectedFilmName} : ${film.description}`);
+        }
+      });
+    // for(item in filmsArr){
+    //     console.log(item)
+    // }
      
 })
 }
 displayMovieChosen();
-
-
-
-// document.addEventListener("change", )
-const dropChoice = document.getElementById("movie");
-
-const selectedValue = dropChoice.value;
-
-var chosenFilm = filmsDropdown.value;
-
-function getSelectedOption() {
-    // Get the dropdown element
-    const dropdown = document.getElementById("movie");
-    
-    // Get the value of the selected option
-    const selectedValue = dropdown.value;
-    
-    
-    
-    // Log the result
-  }
-  
-  getSelectedOption();
