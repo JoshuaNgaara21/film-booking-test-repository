@@ -5,8 +5,8 @@ let listEl = document.querySelector('ul');
  let jsonData;
  let secondaryArr= [];
  var filmsArr ;
-var filmOption ;
-
+var thirdArray ;
+var userChosenMovie;
 fetch('./FlatDango Db Data  (1).json')
 .then(response => response.json())
 .then(data => {
@@ -48,33 +48,41 @@ function getFilms(jsonData){
         // attempt store each film array object in tmp variable 
         //option to add the option to the dropdown list.
 
-        console.log(option.description);
-        console.log(film.title);
-        out += `<option id = "${option.id}" value= "${option.title}">${option.title} </option> `;
+        // console.log(option.description);
+        // console.log(film.title);
+        out += `<option id = "${option.id}" title= "${option.title}">${option.title} </option> `;
         // OUT WAS ONE ARRAY OF ALL THE FILMS STORED AS ONE ARAY ELEMENT
         
-        secondaryArr.push(`<option id = "${option.id}" value= "${option.title}">${option.title} </option> `);
-        //SECONDARY ARR HAS ALL THE FILMS STORED INDIVIDUALLY
+        secondaryArr.push(`<option id = "${option.id}" > ${option.title} 
+            runtime = ${option.runtime} capacity = ${option.capacity} showtime = ${option.showtime} tickects_sold = ${option.tickets_sold}
+            description = ${option.description} poster = ${option.poster}
+            </option> `);
+        //SECONDARY ARR HAS ALL THE FILMS STORED INDIVIDUALLY with each film property as its owwn data type elements
         
-        console.log(secondaryArr);
-        filmOption= option; //MAAYBE DONT STORE USERS CHOICE IN FILM OPTION HERE??
     })
     filmsDropdown.innerHTML=out;
 }
 outputChoice = document.getElementById("outputmovie");
 
-
-filmsDropdown.addEventListener("change", function(){
-    const selectedFilm = filmOption.id;
-    console.log(selectedFilm);
+function displayMovieChosen(){
+    filmsDropdown.addEventListener("change", function(){
+    const selectedFilmName = filmsDropdown.value;
+    console.log(selectedFilmName);
+    for(item in filmsArr){
+        console.log(item)
+    }
+     
 })
+}
+displayMovieChosen();
+
+
+
 // document.addEventListener("change", )
 const dropChoice = document.getElementById("movie");
 
 const selectedValue = dropChoice.value;
-// const selectedText = dropChoice.options[dropChoice.selectedIndex].text;
-// console.log(`Selected Value: ${selectedValue}`);
-// console.log(`Selected Text: ${selectedText}`)
+
 var chosenFilm = filmsDropdown.value;
 
 function getSelectedOption() {
@@ -84,12 +92,9 @@ function getSelectedOption() {
     // Get the value of the selected option
     const selectedValue = dropdown.value;
     
-    // Get the text of the selected option
-    const selectedText = dropdown.options[dropdown.selectedIndex].text;
+    
     
     // Log the result
-    console.log(`Selected Value: ${selectedValue}`);
-    console.log(`Selected Text: ${selectedText}`);
   }
   
   getSelectedOption();
