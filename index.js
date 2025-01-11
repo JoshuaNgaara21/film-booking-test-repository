@@ -63,7 +63,7 @@ function getFilms(jsonData){
     filmsDropdown.innerHTML=out;
 }
 outputChoice = document.getElementById("outputmovie");
-
+moviePoster = document.getElementsByClassName("rounded");
 function displayMovieChosen(){
     filmsDropdown.addEventListener("change", function(){
     const selectedFilmName = filmsDropdown.value;
@@ -72,7 +72,17 @@ function displayMovieChosen(){
         // console.log(film.title);
         if(selectedFilmName==film.title){
             console.log(`THE CORRECT FOUND FILM IS `+selectedFilmName );
-            outputChoice.textContent=(`${selectedFilmName} : ${film.description}`);
+            outputChoice.textContent=(`${selectedFilmName} : ${film.description}
+                \n ${film.title} will run for ${film.runtime} minutes. \n 
+                ${selectedFilmName} will air at ${film.showtime}
+                The Capacity is currently ${film.capacity} seats.
+                ${film.tickets_sold} number of tickets have been sold so far.
+                `);
+            const img = document.createElement('img');
+            img.src = selectedFilmName.poster;
+            const image = document.getElementsByClassName('wrapper');
+            image[0].appendChild(img);
+            console.log(film.poster);
         }
       });
     // for(item in filmsArr){
